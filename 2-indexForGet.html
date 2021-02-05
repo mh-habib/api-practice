@@ -1,0 +1,63 @@
+<!-- 24-5 Load data, JSON placeholder, GET data, display data on UI -->
+<!-- Get Data From: https://jsonplaceholder.typicode.com/guide/ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>JSON</h1>
+    <h2>JavaScript Object Notation</h2>
+
+    <ul id="title-list">
+        <!-- Here we add <li> items by javaScript -->
+    </ul>
+
+    <script>
+        //Get real time data from back end 
+        //following two lines to connect the back end server
+        fetch('https://jsonplaceholder.typicode.com/users/1/posts')
+            .then((response) => response.json())
+            .then(json => displayUsers(json))
+            //Following line is to catch error if there happened anything in times of connecting or getting data
+            .catch(error => console.log(error));
+
+        //Function to display back end data to the browser
+        function displayUsers(users) {
+            const title = users.map(user => user.title);
+            console.log('users:', title);
+            for (let i = 0; i < title.length; i++) {
+                const element = title[i];
+                //console.log(element);
+                //Creation of <li> element 
+                const listElement = document.createElement('li');
+                //Add text as innerText inside element
+                listElement.innerText = element;
+                //Impose as a child to the ul tag 
+                document.getElementById('title-list').appendChild(listElement);
+            }
+        }
+
+        // Error Notes: From MDN
+        // HTTP response status codes indicate whether a specific HTTP request has been successfully completed.
+        // Responses are grouped in five classes:
+        // 1. Informational responses(100–199)
+        // 2. Successful responses(200–299)
+        // 3. Redirects (300–399)
+        // 4. Client errors(400–499)
+        // 5. Server errors(500–599)
+        // Examples:
+        // 404 Not Found 
+        // 403 Forbidden //Permission nai
+        // 200 OK
+        // HTTP Request Methods: from W3school
+
+    </script>
+
+</body>
+
+</html>

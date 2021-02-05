@@ -1,0 +1,26 @@
+<!-- 24_5-2 Explore Random User API Who Am I -->
+<!-- Website: https://randomuser.me/ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who Am I</title>
+</head>
+<body>
+    <h3 id="name">Name</h3>
+
+
+    <script>
+        fetch('https://randomuser.me/api')
+        .then(response => response.json())
+        .then(data => {
+            const user = data.results[0];
+            const name = user.name;
+            const userName = `${name.title} ${name.first} ${name.last}`;
+            // console.log(userName);
+            document.getElementById('name').innerText = userName;
+        })
+    </script>
+</body>
+</html>
